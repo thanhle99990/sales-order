@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "https://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<bean class="com.mwg.api.ApplicationService" init-method="startup"
+		destroy-method="shutdown" name="AppService">
+		<property name="handlers">
+			<map>
+				<entry key="v1/GetDemo">
+					<bean class="com.mwg.api.handlers.GetDemoHandler" />
+				</entry>
+				<entry key="v1/GetByIdBlanketSalesOrderDetail">
+					<bean class="com.mwg.api.handlers.read.GetByIdBlanketSalesOrderDetailHandler" />
+				</entry>
+				<entry key="v1/PostBlanketSalesOrderDetail">
+					<bean class="com.mwg.api.handlers.write.PostBlanketSalesOrderDetailHandler" />
+				</entry>
+				<entry key="v1/UpdateBlanketSalesOrderDetail">
+					<bean class="com.mwg.api.handlers.write.UpdateBlanketSalesOrderDetailHandler" />
+				</entry>
+
+
+			</map>
+		</property>
+	</bean>
+</beans>

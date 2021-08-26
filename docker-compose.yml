@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+
+  docker-bhxapi-1:
+    image: '172.16.5.57:5000/bhxapi:latest'
+    hostname: "docker-bhxapi-1"
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == zdoc-4
+      mode: replicated
+      replicas: 1
+    ports: 
+      - '6789:8080' 
+
+  docker-bhxapi-2:
+    image: '172.16.5.57:5000/bhxapi:latest'
+    hostname: "docker-bhxapi-2"
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == zdoc-5
+      mode: replicated
+      replicas: 1
+    ports:
+      - '6790:8080'
+
+  docker-bhxapi-3:
+    image: '172.16.5.57:5000/bhxapi:latest'
+    hostname: "docker-bhxapi-3"
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == zdoc-6
+      mode: replicated
+      replicas: 1
+    ports:
+      - '6791:8080'

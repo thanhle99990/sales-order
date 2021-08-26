@@ -1,0 +1,17 @@
+<b:beans xmlns="http://www.springframework.org/schema/security" xmlns:b="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+	<http pattern="/login/*" security="none" auto-config="true" />
+	<http use-expressions="true" auto-config="true" authentication-manager-ref="AUTHEN" pattern="/api/**">
+		<intercept-url pattern="/**" access="hasRole('USER')" />
+		<csrf disabled="true" />
+		<http-basic />
+	</http>
+	<authentication-manager id="AUTHEN">
+		<authentication-provider user-service-ref="userService">
+			<password-encoder ref="md5PasswordEncoder" />
+		</authentication-provider>
+	</authentication-manager>
+	<b:bean id="userService" class="com.mwg.api.configs.UserService" />
+	<b:bean id="md5PasswordEncoder" class="com.mwg.api.configs.MD5PassEncoder" />
+</b:beans>
